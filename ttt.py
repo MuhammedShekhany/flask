@@ -1,4 +1,4 @@
-from binance.client import Client
+""" from binance.client import Client
 from binance.exceptions import BinanceAPIException
 from binance.exceptions import BinanceRequestException
 import time
@@ -16,3 +16,15 @@ client.timestamp_offset = server_time['serverTime'] - int(time.time() * 1000)
 usdt_account_info =  client.get_asset_balance(asset='USDT')
 print("Spot Account Information usdt:")
 print(usdt_account_info['free'])
+ """
+# app.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
