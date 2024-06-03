@@ -12,6 +12,9 @@ app = Flask(__name__)
 def handle_post():
     print("hello1")
     data = request.get_json()
+    print(data)
+    name = data.get('name')
+    print('name:', name)
     if not data:
         return jsonify({'error': 'No data provided'}), 400
     else:
@@ -35,6 +38,7 @@ def handle_post():
             print(usdt_account_info['free'])
             symbol = 'XAIUSDT'  # The trading pair
             quantity_usdt = int(float(usdt_account_info['free']))  # The amount you want to buy
+            print('name::::::',name)
 
             if quantity_usdt != 0 :
                 order = client.order_market_buy(
