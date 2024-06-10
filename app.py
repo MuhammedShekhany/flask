@@ -56,10 +56,10 @@ def handle_post():
                 last_price = float(ticker['price'])
                 print('lastprice:')
                 print(last_price)
-                stop_price =round(last_price -(0.005 * last_price),4)  # 0.5% below the last price
+                stop_price =round(last_price -(0.0025 * last_price),4)  # 0.5% below the last price
                 print('stop_price:')
                 print(stop_price)
-                take_profit_price =round(last_price+(0.0075 * last_price),4)  # 0.5% above the last price
+                take_profit_price =round(last_price+(0.0025 * last_price),4)  # 0.5% above the last price
                 print('take_profit_price:')
                 print(take_profit_price)
                 stop_limit_time_in_force = 'GTC'
