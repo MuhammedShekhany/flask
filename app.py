@@ -36,7 +36,7 @@ def handle_post():
             usdt_account_info =  client.get_asset_balance(asset='USDT')
             print("Spot Account Information usdt:")
             print(usdt_account_info['free'])
-            symbol = 'XAIUSDT'  # The trading pair
+            symbol = 'ADAUSDT'  # The trading pair
             quantity_usdt = int(float(usdt_account_info['free']))  # The amount you want to buy
             print('name::::::',name)
 
@@ -47,10 +47,10 @@ def handle_post():
                 )
                 print(order)
                 #################################################################################
-                XAI_account_info =  client.get_asset_balance(asset='XAI')
+                XAI_account_info =  client.get_asset_balance(asset='ADA')
                 print("Spot Account Information xai:")
                 print(XAI_account_info['free'])
-                symbolXAI = 'XAIUSDT'  # The trading pair
+                symbolXAI = 'ADAUSDT'  # The trading pair
                 quantity_XAI = int(float(XAI_account_info['free']))
                 ticker = client.get_symbol_ticker(symbol=symbolXAI)
                 last_price = float(ticker['price'])
