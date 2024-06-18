@@ -55,10 +55,12 @@ def handle_post():
                     print(ADA_account_info['free'])
                     symbolADA = 'ADAUSDT'  # The trading pair
                     quantity_ADA = int(float(ADA_account_info['free']))
-                    ticker = client.get_symbol_ticker(symbol=symbolADA)
-                    last_price = float(ticker['price'])
-                    print('lastprice:')
-                    print(last_price)
+                    print("quantity ada=")
+                    print(quantity_ADA)
+                    #ticker = client.get_symbol_ticker(symbol=symbolADA)
+                    #last_price = float(ticker['price'])
+                    #print('lastprice:')
+                    #print(last_price)
                     #stop_price =round(last_price -(0.001 * last_price),4)  # 0.5% below the last price
                     #print('stop_price:')
                     #print(stop_price)
