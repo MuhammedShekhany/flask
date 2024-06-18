@@ -32,50 +32,51 @@ def handle_post():
 
         # Get spot account information
     try:
-            
-            usdt_account_info =  client.get_asset_balance(asset='USDT')
-            print("Spot Account Information usdt:")
-            print(usdt_account_info['free'])
-            symbol = 'ADAUSDT'  # The trading pair
-            quantity_usdt = int(float(usdt_account_info['free']))  # The amount you want to buy
-            print('name::::::',name)
+            if name=="buy":
+                usdt_account_info =  client.get_asset_balance(asset='USDT')
+                print("Spot Account Information usdt:")
+                print(usdt_account_info['free'])
+                symbol = 'ADAUSDT'  # The trading pair
+                quantity_usdt = int(float(usdt_account_info['free']))  # The amount you want to buy
+                print('name::::::',name)
 
-            if quantity_usdt != 0 :
-                order = client.order_market_buy(
-                    symbol=symbol,
-                    quoteOrderQty=quantity_usdt
-                )
-                print(order)
-                #################################################################################
-                XAI_account_info =  client.get_asset_balance(asset='ADA')
-                print("Spot Account Information xai:")
-                print(XAI_account_info['free'])
-                symbolXAI = 'ADAUSDT'  # The trading pair
-                quantity_XAI = int(float(XAI_account_info['free']))
-                ticker = client.get_symbol_ticker(symbol=symbolXAI)
-                last_price = float(ticker['price'])
-                print('lastprice:')
-                print(last_price)
-                stop_price =round(last_price -(0.001 * last_price),4)  # 0.5% below the last price
-                print('stop_price:')
-                print(stop_price)
-                take_profit_price =round(last_price+(0.0025 * last_price),4)  # 0.5% above the last price
-                print('take_profit_price:')
-                print(take_profit_price)
-                stop_limit_time_in_force = 'GTC'
+                if quantity_usdt != 0 :
+                    order = client.order_market_buy(
+                        symbol=symbol,
+                        quoteOrderQty=quantity_usdt
+                    )
+                    print(order)
+                elif quantity_usdt != 0 :
+                    print("usdt === 0")
+               
+            elif name=="sell":
+                    ADA_account_info =  client.get_asset_balance(asset='ADA')
+                    print("Spot Account Information ADA:")
+                    print(ADA_account_info['free'])
+                    symbolADA = 'ADAUSDT'  # The trading pair
+                    quantity_ADA = int(float(ADA_account_info['free']))
+                    ticker = client.get_symbol_ticker(symbol=symbolADA)
+                    last_price = float(ticker['price'])
+                    print('lastprice:')
+                    print(last_price)
+                    #stop_price =round(last_price -(0.001 * last_price),4)  # 0.5% below the last price
+                    #print('stop_price:')
+                    #print(stop_price)
+                    #take_profit_price =round(last_price+(0.0025 * last_price),4)  # 0.5% above the last price
+                    #print('take_profit_price:')
+                    #print(take_profit_price)
+                    #stop_limit_time_in_force = 'GTC'
+                    if quantity_ADA != 0 :
 
-                order1 = client.create_oco_order(
-                    symbol=symbolXAI,
-                    side=Client.SIDE_SELL,
-                    quantity=quantity_XAI,
-                    price=take_profit_price,
-                    stopPrice=stop_price,
-                    stopLimitPrice=stop_price,
-                    stopLimitTimeInForce=stop_limit_time_in_force
-                )
-                print(order1)
-            elif quantity_usdt != 0 :
-                print("usdt === 0")
+                        order1 = client.order_market_sell(
+                            symbol=symbolADA,
+                            quoteOrderQty=quantity_ADA
+                        )
+                        print(order1)
+                    elif quantity_ADA == 0 :
+                        print("ada === 0")
+                    
+                
     
     except BinanceAPIException as e:
         print(f"Binance API exception occurred: {e}")
