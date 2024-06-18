@@ -72,7 +72,7 @@ def handle_post():
 
                         order1 = client.order_market_sell(
                             symbol=symbolADA,
-                            quoteOrderQty=quantity_ADA
+                            quantity=quantity_ADA
                         )
                         print(order1)
                     elif quantity_ADA == 0 :
